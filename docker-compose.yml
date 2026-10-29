@@ -1,16 +1,12 @@
 
 services:
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    image: frontend:latest
+    image: ${DOCKER_USERNAME}/frontend1:latest
+    depends_on:
+      - backend
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    image: backend:latest
+    image: ${DOCKER_USERNAME}/backend1:latest
     environment:
       MONGO_URL: mongodb://mongodb:27017/studentdb
     depends_on:
